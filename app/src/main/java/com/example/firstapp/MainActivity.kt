@@ -489,7 +489,7 @@ fun EditableEmployeeCard(
                     Text("Save Changes")
                 }
             } else {
-
+                // Read-only view
                 Text(emp.position, color = Blue_Primary, fontWeight = FontWeight.Medium)
                 Text("Salary: $${emp.salary}", color = Color.Gray)
             }
