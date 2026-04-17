@@ -114,7 +114,7 @@ fun MyApp(viewModel: EmployeeViewModel = viewModel()) {
                 onLogout = { isLoggedIn = false }
             )
             Screen.ADD_EMPLOYEE -> ModernAddEmployeeScreen(
-                viewModel = viewModel, // ✅ Pass VM to handle positions
+                viewModel = viewModel, //  Pass VM to handle positions
                 onBack = { currentScreen = Screen.DASHBOARD },
                 onSave = { viewModel.addEmployee(it); currentScreen = Screen.DASHBOARD }
             )
@@ -206,7 +206,7 @@ fun ModernDashboardScreen(
             GenderChartCard(
                 male = employees.count { it.gender == "Male" },
                 female = employees.count { it.gender == "Female" },
-                other = employees.count { it.gender == "Other" } // ✅ Added this
+                other = employees.count { it.gender == "Other" } //  Added this
             )
             Text("Quick View", fontWeight = FontWeight.Bold)
             LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
