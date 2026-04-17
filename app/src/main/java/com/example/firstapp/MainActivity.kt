@@ -66,7 +66,7 @@ class EmployeeViewModel : ViewModel() {
     var employees by mutableStateOf(listOf<Employee>())
         private set
 
-    // ✅ Dynamic list of positions
+    //  Dynamic list of positions
     var positions by mutableStateOf(listOf("Manager", "Developer", "Designer", "HR", "Sales", "Intern"))
         private set
 
@@ -76,7 +76,7 @@ class EmployeeViewModel : ViewModel() {
         employees = employees.map { if (it.id == updated.id) updated else it }
     }
 
-    // ✅ Add new position logic
+    //  Add new position logic
     fun addPosition(newPos: String) {
         if (newPos.isNotBlank() && !positions.contains(newPos)) {
             positions = (positions + newPos).sorted()
@@ -271,7 +271,7 @@ fun ModernAddEmployeeScreen(viewModel: EmployeeViewModel, onBack: () -> Unit, on
     var ph by remember { mutableStateOf("") }
     var addr by remember { mutableStateOf("") }
 
-    // ✅ Add Context to show Toast messages
+    //  Add Context to show Toast messages
     val context = LocalContext.current
     var showPosDialog by remember { mutableStateOf(false) }
 
@@ -323,14 +323,14 @@ fun ModernAddEmployeeScreen(viewModel: EmployeeViewModel, onBack: () -> Unit, on
 
             Button(
                 onClick = {
-                    // ✅ VALIDATION LOGIC
+                    //  VALIDATION LOGIC
                     when {
                         name.isBlank() -> Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT).show()
                         ph.isBlank() -> Toast.makeText(context, "Please enter a phone number", Toast.LENGTH_SHORT).show()
                         addr.isBlank() -> Toast.makeText(context, "Please enter an address", Toast.LENGTH_SHORT).show()
                         sal.isBlank() -> Toast.makeText(context, "Please enter the salary", Toast.LENGTH_SHORT).show()
                         else -> {
-                            // ✅ All clear - Save the employee
+                            //  All clear - Save the employee
                             onSave(
                                 Employee(
                                     name = name,
@@ -356,7 +356,7 @@ fun ModernAddEmployeeScreen(viewModel: EmployeeViewModel, onBack: () -> Unit, on
     }
 }
 
-// ✅ New Dialog for adding Positions
+// New Dialog for adding Positions
 @Composable
 fun AddPositionDialog(onDismiss: () -> Unit, onConfirm: (String) -> Unit) {
     var newPos by remember { mutableStateOf("") }
@@ -426,13 +426,13 @@ fun ModernManageScreen(employees: List<Employee>, positions: List<String>,onBack
 @Composable
 fun EditableEmployeeCard(
     emp: Employee,
-    positions: List<String>, // ✅ Pass the dynamic positions list
+    positions: List<String>, //  Pass the dynamic positions list
     onUpdate: (Employee) -> Unit,
     onDeleteRequest: () -> Unit
 ) {
     var editing by remember { mutableStateOf(false) }
 
-    // ✅ Use remember(emp) to ensure state resets correctly when clicking different staff
+    //  Use remember(emp) to ensure state resets correctly when clicking different staff
     var salary by remember(emp) { mutableStateOf(emp.salary.toString()) }
     var selectedPos by remember(emp) { mutableStateOf(emp.position) }
 
@@ -459,7 +459,7 @@ fun EditableEmployeeCard(
             }
 
             if (editing) {
-                // ✅ Update Position Dropdown
+                //  Update Position Dropdown
                 ModernDropdown(
                     label = "Update Position",
                     options = positions,
@@ -479,7 +479,7 @@ fun EditableEmployeeCard(
                 Button(
                     onClick = {
                         val newSal = salary.toDoubleOrNull() ?: emp.salary
-                        // ✅ Save both new Position and Salary
+                        //  Save both new Position and Salary
                         onUpdate(emp.copy(position = selectedPos, salary = newSal))
                         editing = false
                     },
@@ -562,7 +562,7 @@ fun GenderChartCard(male: Int, female: Int, other: Int) {
 
             val total = (male + female + other).coerceAtLeast(1)
 
-            // ✅ Custom Multi-Segment Progress Bar
+            //  Custom Multi-Segment Progress Bar
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -577,7 +577,7 @@ fun GenderChartCard(male: Int, female: Int, other: Int) {
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // ✅ Legend / Labels Row
+            //  Legend / Labels Row
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
