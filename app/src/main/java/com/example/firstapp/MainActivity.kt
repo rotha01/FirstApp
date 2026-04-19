@@ -160,7 +160,7 @@ fun ModernLoginScreen(onLoginSuccess: () -> Unit) {
 
             Button(
                 onClick = {
-                    if (email == "admin@email.com" && password == "123") onLoginSuccess()
+                    if (email == "admin@email.com" && password == "1234") onLoginSuccess()
                     else Toast.makeText(context, "Invalid Login", Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier.fillMaxWidth().height(56.dp),
